@@ -20,7 +20,11 @@ data "aws_ssm_parameter" "sg_id" {
   name = "/${var.project}/${var.environment}/${var.component}-sg-id" 
 }
 
-data "aws_ssm_parameter" "listener_arn" {
-  name = "/${var.project}/${var.environment}/listener_arn" 
+data "aws_ssm_parameter" "backend_listener_arn" {
+  name = "/${var.project}/${var.environment}/backend_listener_arn" 
+}
+
+data "aws_ssm_parameter" "frontend_listener_arn" {
+  name = "/${var.project}/${var.environment}/frontend_listener_arn" 
 }
 

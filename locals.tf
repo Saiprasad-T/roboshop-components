@@ -3,7 +3,9 @@ locals {
     private_snet = split(",", data.aws_ssm_parameter.private-snet.value)[0]
     sg_id = data.aws_ssm_parameter.sg_id.value
     vpc_id = data.aws_ssm_parameter.vpc_id.value
-    listener_arn = data.aws_ssm_parameter.listener_arn.value
+    frontend_listener_arn = data.aws_ssm_parameter.frontend_listener_arn.value 
+    backend_listener_arn = data.aws_ssm_parameter.backend_listener_arn.value
+    listener_arn = var.component == "frontend" ? local.frontend_listener_arn : local.backend_listener_arn
     port_number = var.component == "frontend" ? 80 : 8080
     health_check_path = var.component == "frontend" ? "/" : "/health"
     values = var.component == "frontend" ? "${var.component}-${var.environment}.${var.domain}" : "${var.component}.backend-alb-${var.environment}.${var.domain}"
