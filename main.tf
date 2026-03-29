@@ -135,7 +135,7 @@ resource "aws_autoscaling_group" "main" {
   version = "$Latest"
   }
   target_group_arns = [aws_lb_target_group.main.arn]
-  vpc_zone_identifier   = local.private_snet
+  vpc_zone_identifier   = [local.private_snet]
 
   instance_refresh {
     strategy = "Rolling"
