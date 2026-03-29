@@ -6,8 +6,7 @@ locals {
     listener_arn = data.aws_ssm_parameter.listener_arn.value
     port_number = var.component == "frontend" ? 80 : 8080
     health_check_path = var.component == "frontend" ? "/" : "/health"
-    values = var.component == "frontend" ? "${var.component}-${var.environment}.${var.domain}" :
-    "${var.component}.backend-alb-${var.environment}.${var.domain}"
+    values = var.component == "frontend" ? "${var.component}-${var.environment}.${var.domain}" : "${var.component}.backend-alb-${var.environment}.${var.domain}"
 }
 
 locals {
